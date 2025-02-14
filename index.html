@@ -28,3 +28,166 @@
     </audio>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            color: red;
+            font-size: 24px;
+            margin-top: 50px;
+        }
+
+        #message {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: rgba(255, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        #photos {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 100px;
+            width: 100%;
+        }
+
+        .photo {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        #left, #right {
+            display: flex;
+            flex-direction: column;
+            width: 150px;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+            animation: float 5s infinite;
+        }
+
+        /* Lavender hearts for hidden notes */
+        .lavender {
+            background-color: lavender !important;
+            cursor: pointer;
+        }
+
+        /* Hidden notes */
+        .note {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: black;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="your-music-url.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Love Message -->
+    <div id="message">
+        This is a special website for the best girl in the world.  
+        I love you more than words can say, thank you for everything,  
+        and I hope you like this gift ❤️
+    </div>
+
+    <!-- Photo Section -->
+    <div id="photos">
+        <div id="left"></div> <!-- Left photos -->
+        <div id="right"></div> <!-- Right photos -->
+    </div>
+
+    <!-- Hearts (some are lavender with hidden notes) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const numHearts = 20;
+            const body = document.body;
+
+            for (let i = 0; i < numHearts; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+                if (Math.random() < 0.3) { // 30% chance to be lavender heart
+                    heart.classList.add("lavender");
+                    let note = document.createElement("div");
+                    note.classList.add("note");
+                    note.innerText = "A special message just for you ❤️"; // Change this message
+                    heart.appendChild(note);
+
+                    heart.addEventListener("click", function() {
+                        note.style.display = note.style.display === "block" ? "none" : "block";
+                    });
+                }
+
+                body.appendChild(heart);
+            }
+
+            // Add photos to left and right sides
+            const leftPhotos = ["your-photo1.jpg", "your-photo2.jpg"]; // Add more
+            const rightPhotos = ["your-photo3.jpg", "your-photo4.jpg"]; // Add more
+
+            const leftDiv = document.getElementById("left");
+            const rightDiv = document.getElementById("right");
+
+            leftPhotos.forEach(photo => {
+                let img = document.createElement("img");
+                img.src = photo;
+                img.classList.add("photo");
+                leftDiv.appendChild(img);
+            });
+
+            rightPhotos.forEach(photo => {
+                let img = document.createElement("img");
+                img.src = photo;
+                img.classList.add("photo");
+                rightDiv.appendChild(img);
+            });
+        });
+    </script>
+
+</body>
+</html>
